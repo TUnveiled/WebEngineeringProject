@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Home</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,39 +15,89 @@
   <link rel="stylesheet" href="css/main.css">
 
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
   <meta name="theme-color" content="#fafafa">
-
 </head>
 
 <body>
-  <!--[if IE]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  <![endif]-->
+<!-- Main container -->
+<div class="container container-fluid bg-dark">
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
 
-  <!-- Add your site or application content here -->
+  <!-- content window -->
+  <div class="col-sm-auto">
 
+    <!-- Page Header -->
+    <div id="header">
+      <script src="loadHeader.js"></script>
+    </div>
+    <br>
 
+    <div class="row">
 
-  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-  <script src="js/plugins.js"></script>
-  <script src="js/main.js"></script>
+      <div class="col-sm-4">
+        <a href="">
+          <img border="0" alt="Sell an Item" style="width:100%" height="300px"
+               src="https://www.theupsstore.com/Image%20Library/theupsstore/general-content/gc1/gc1_college-move-in-out.jpg">
+        </a>
+        <p class="text-white">
+          Sell an Item
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <a href="">
+          <img border="0" alt="View Orders" style="width:100%" height="300px" src="data:image/png;base64,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">
+        </a>
+        <p class="text-white">
+          View Orders
+        </p>
+        </a>
 
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <script>
+      </div>
+      <div class="col-sm-4">
+        <a href="">
+          <img border="0" alt="Shopping Cart" style="width:100%" height="300px"
+               src="https://assets1.risnews.com/styles/content_sm/s3/2018-04/shopping-cart.png?itok=LUk_XbaE">
+        </a>
+        <p class="text-white">
+          Shopping Cart
+        </p>
+      </div>
+    </div>
+
+    <br>
+
+    <!-- Page Footer -->
+    <div class="row bg-secondary container-fluid text-center" id="footer">
+      <script src="loadFooter.js"></script>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
+</div>
+
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script>
     window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
     ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
-  </script>
-  <script src="https://www.google-analytics.com/analytics.js" async></script>
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>

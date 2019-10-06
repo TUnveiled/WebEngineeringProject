@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Please Log In to Continue</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,36 +24,50 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
   <meta name="theme-color" content="#fafafa">
-<style>
-  .container-fullwidth{
-    height:100vh;
-  }
-  h1{
-    margin-bottom:0px;
-  }
-  p{
-    margin-top:0px;
-  }
-</style>
+
 </head>
 <body>
-<div class="container-fullwidth bg-dark" >
-    <div class="col-sm-auto">
-      <h1> </h1>
-</div>
-  <div class=col-sm-auto">
-    <div class="jumbotron jumbotron-fluid bg-dark">
-   <center>  <h1 class="text-white">E-Commerce Project Website</h1>
-     <p class="text-white">Please enter you username and password to log into your account</p><br></center>
-    </div>
-    <form method="post" id="LoginForm" >
-       <center> <Label class="text-white">Username:</Label>
-         <input type="text" name="login" id="username"><br></center>
-     <center> <label class="text-white">Password:  </label>
-         <input type=text" name="login" id="password"><br></center>
-    </form>
-    <center><button type="submit" form="LoginForm" Value="Submit">Submit</button></center>
+<!-- Main container -->
+<div class="container container-fluid bg-dark text-white">
+  <div class="col-sm-2">
+    <h1> </h1>
   </div>
-</div>
 
+  <!-- content window -->
+  <div class="col-sm-auto bg-dark">
+
+    <!-- Page Header -->
+    <div id="header">
+      <script src="loadHeader.js"></script>
+    </div>
+    <br>
+
+    <!-- login page -->
+    <div class="container container-fluid text-center">
+      <br><br>
+      <h1>Please log in to continue</h1>
+      <br><br><br>
+        <form method="post" id="LoginForm" >
+          <label>Username:  <input type="text" name="login" id="username"></label><br>
+
+          <label>Password:  <input type=text" name="login" id="password"></label><br>
+
+        </form>
+        <button type="submit" form="LoginForm" Value="Submit">Submit</button>
+      <br><br><br><br><br>
+      </div>
+
+    <!-- Page Footer -->
+    <div class="row bg-secondary container-fluid text-center" id="footer">
+      <script src="loadFooter.js"></script>
+    </div>
+  </div>
+
+
+
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
+
+</div>
 </body>
