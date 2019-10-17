@@ -1,4 +1,3 @@
-connect to ecommerce;
 
 create table User(
     emailAddress varchar(255),
@@ -31,7 +30,7 @@ create table Listing(
     foreign key (productID) references Product (productID)
 );
 
-create table Order(
+create table customerOrder(
     orderID integer,
     buyerEmail varchar(255),
     sellerName varchar(255),
