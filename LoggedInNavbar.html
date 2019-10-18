@@ -1,0 +1,36 @@
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="home.html">Home <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Orders <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Your Listings <span class="sr-only">(current)</span></a>
+  </li>
+  <li class="nav-item">
+    <button class="btn my-2 my-sm-0" id="logoutbtn">Log Out</button>
+  </li>
+</ul>
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+
+<script>
+    function handleMsg(msg) {
+        window.location.replace("index.html");
+    }
+    $('#logoutbtn').click(function() {
+        result = $.ajax({
+            async: true,
+            type: "POST",
+            url: "php/header.php",
+            timeout: 5000,
+            data: {but_logout: true}
+        });
+
+        result.always(handleMsg);
+    });
+
+</script>

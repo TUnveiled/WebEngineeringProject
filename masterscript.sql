@@ -1,9 +1,16 @@
-
 create table User(
     emailAddress varchar(255),
     passwordHash varchar(255),
     administrator bit,
     primary key (emailAddress)
+);
+
+create table userToken(
+    emailAddress varchar(255),
+    token varchar(80),
+    timemodified timestamp,
+    primary key (emailAddress),
+    foreign key (emailAddress) references User (emailAddress)
 );
 
 create table Seller(
@@ -19,6 +26,7 @@ create table Product(
     stock integer,
     description varchar(511),
     manufacturer char,
+    imageLink varchar(255),
     primary key (productID)
 );
 
