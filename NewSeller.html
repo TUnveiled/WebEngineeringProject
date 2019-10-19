@@ -1,0 +1,46 @@
+
+<h1>You aren't currently a seller, What name would you like to sell under?</h1>
+
+<form>
+  <div class="form-group text-left">
+    <label>Seller Name:</label>
+    <input class="form-control" type="text" name="sellerName" id="sname">
+  </div>
+</form>
+
+<button class="btn" id="NewSellerButton">Submit</button>
+
+<script>
+  function handleMsg(msg) {
+    alert(msg);
+    switch (msg.charAt(0)) {
+        case 'Y':
+            // success
+            window.location.replace("yourlistings.html");
+            break;
+        case 'T':
+            // name taken
+            break;
+        case 'A':
+            // Why is an admin on this page?
+            window.location.replace("home.html");
+            break;
+
+    }
+  }
+
+
+    $('#NewSellerButton').click(function() {
+        let result = $.ajax({
+            async: true,
+            type: "POST",
+            url: "php/newseller.php",
+            timeout:5000,
+            data: {
+                sellerName: $('#sname').val()
+            }
+        });
+
+        result.always(handleMsg);
+    });
+</script>

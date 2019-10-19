@@ -1,0 +1,170 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Your Listings</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<!-- Main container -->
+<div class="container container-fluid bg-dark">
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
+
+  <!-- content window -->
+  <div class="col-sm-auto">
+
+    <!-- Page Header -->
+    <div id="header">
+      <script src="loadHeader.js"></script>
+    </div>
+    <br>
+
+
+
+    <div class="container col col-sm-8 container-fluid text-center text-white" id="maincontainer">
+
+      <h1> Please enter the text for the new Listing</h1>
+
+          <div class="form-group text-left">
+            <label>Product Name:</label>
+            <input class="form-control" type="text" name="productName" id="pname">
+          </div>
+
+          <div class="form-group text-left">
+            <label>Manufacturer:</label>
+            <input class="form-control" type="text" name="manufacturer" id="manu"><br>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Price (CAD):</label>
+            <input class="form-control" type="text" name="price" id="price"><br>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Link to Image:</label>
+            <input class="form-control" type="text" name="imageLink" id="image"><br>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Stock:</label>
+            <input class="form-control" type="text" name="stock" id="stock"><br>
+          </div>
+
+          <div class="form-group text-left">
+            <label>Description:</label>
+            <textarea class="form-control" rows="10" name="description" id="desc"></textarea><br>
+          </div>
+
+      <button class="btn" id="NewListingButton">Submit</button>
+      </div>
+    <script>
+
+        result = $.ajax({
+            async: true,
+            type: "POST",
+            url: "php/checkseller.php",
+            timeout:5000
+        });
+
+        result.always(function (msg) {
+            alert(msg);
+            switch (msg.charAt(0)) {
+                case '0':
+                    $('#maincontainer').innerHTML = "";
+                    $('#maincontainer').load('NewSeller.html');
+                    break;
+                case '1':
+                    break;
+                case '9':
+                    window.location.replace("index.html");
+                    break;
+            }
+        });
+    </script>
+    <script>
+
+        $('#NewListingButton').click(function() {
+            $.ajax({
+                async: true,
+                type: "POST",
+                url: "php/newlisting.php",
+                timeout:5000,
+                data: {
+                    productName: $('#pname').val(),
+                    manufacturer: $('#manu').val(),
+                    price: $('#price').val(),
+                    stock: $('#stock').val(),
+                    imageLink: $('#image').val(),
+                    description: $('#desc').val()
+                }
+            }).always(function (msg) {
+                alert(msg);
+                switch (msg.charAt(0)) {
+                    case '4':
+                        alert(msg.substr(4));
+                        $('#maincontainer').innerHTML = "";
+                        $('#maincontainer').load('NewSeller.html');
+                        break;
+                    case '2':
+                        alert(msg.substr(4));
+                        window.location.replace("yourlistings.html");
+                        break;
+                    case '3':
+                    case '5':
+                        alert(msg.substr(4));
+                        break;
+                    case '6':
+                        alert("something unexpected happened");
+                        break;
+                }
+            });
+        });
+
+    </script>
+
+    <br>
+
+    <!-- Page Footer -->
+    <div class="row bg-secondary container-fluid text-center" id="footer">
+      <script src="loadFooter.js"></script>
+    </div>
+  </div>
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
+</div>
+
+<script src="js/vendor/modernizr-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+
+</html>

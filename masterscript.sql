@@ -21,11 +21,12 @@ create table Seller(
 );
 
 create table Product(
-    productID integer,
+    productID integer auto_increment,
+    productName varchar(255),
     price double,
     stock integer,
     description varchar(511),
-    manufacturer char,
+    manufacturer varchar(255),
     imageLink varchar(255),
     primary key (productID)
 );

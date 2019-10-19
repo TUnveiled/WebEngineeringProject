@@ -1,12 +1,3 @@
-function handleMsg(msg) {
-  console.log("handleMsg is running: " + msg);
-  document.getElementById("logintext").innerText=msg;
-  if(msg.charAt(0) == 'L') {
-    $('#navbarSupportedContent').innerHTML = "";
-    $('#navbarSupportedContent').load('LoggedInNavbar.html');
-  }x
-}
-
 if(!$('#header').hasClass('loaded')) {
   $('#header').load('header.html');
   $('#header').addClass('loaded');
@@ -19,6 +10,13 @@ result = $.ajax({
   timeout:5000
 });
 
-result.always(handleMsg);
+result.always(function (msg) {
+  console.log("handleMsg is running: " + msg);
+  document.getElementById("logintext").innerText=msg;
+  if(msg.charAt(0) == 'L') {
+    $('#navbarSupportedContent').innerHTML = "";
+    $('#navbarSupportedContent').load('LoggedInNavbar.html');
+  }
+});
 
 
