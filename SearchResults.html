@@ -44,37 +44,27 @@
       <h3 class="text-white">Search Results</h3>
 
       <!-- Search result -->
-      <div class="row" style="max-height:200px">
-        <div class="col-sm-3 text-center">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/61q45h8wMfL._SL1500_.jpg" class="img-thumbnail" style="max-height:200px" alt="BESTEK 8-Outlet Surge Protector Power Strip with 4 USB Charging Ports">
-        </div>
-        <div class="col-sm-8">
-          <h2 class="text-white">
-            BESTEK 8-Outlet Surge Protector Power Strip with 4 USB Charging Ports
-          </h2>
-          <h2 class="text-white-50">
-            $32.99
-          </h2>
-        </div>
-      </div>
-      <br>
+      <div id="mainresults"></div>
 
-      <!-- Search result 2 -->
-      <div class="row" style="max-height:200px">
-        <div class="col-sm-3 text-center">
-          <img src="https://images-na.ssl-images-amazon.com/images/I/61B50z1-b7L._SL1500_.jpg" class="img-thumbnail" style="max-height:200px" alt="Belkin BE112230-08 12-Outlet Power Strip Surge Protector">
-        </div>
-        <div class="col-sm-8">
-          <h2 class="text-white">
-            Belkin BE112230-08 12-Outlet Power Strip Surge Protector
-          </h2>
-          <h2 class="text-white-50">
-            $42.99
-          </h2>
-        </div>
-      </div>
+      <script>
 
-      <br>
+          let param = location.search.substring(3);
+
+          param = decodeURIComponent(param);
+
+          $.ajax({
+              async: true,
+              type: "POST",
+              url: "php/search.php",
+              data: {
+                  searchString: param
+              }
+          }).always(function (msg) {
+              document.getElementById("mainresults").innerHTML=msg;
+          });
+
+
+      </script>
 
       <!-- Page Footer -->
       <div class="row bg-secondary container-fluid text-center" id="footer">

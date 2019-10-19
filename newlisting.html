@@ -90,7 +90,6 @@
         });
 
         result.always(function (msg) {
-            alert(msg);
             switch (msg.charAt(0)) {
                 case '0':
                     $('#maincontainer').innerHTML = "";
@@ -121,7 +120,6 @@
                     description: $('#desc').val()
                 }
             }).always(function (msg) {
-                alert(msg);
                 switch (msg.charAt(0)) {
                     case '4':
                         alert(msg.substr(4));

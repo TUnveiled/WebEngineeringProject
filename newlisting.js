@@ -1,5 +1,4 @@
 function handleMsg(msg) {
-  alert(msg);
   switch (msg.charAt(0)) {
     case '4':
       alert(msg.substr(4));
