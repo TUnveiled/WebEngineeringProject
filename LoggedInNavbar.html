@@ -12,15 +12,13 @@
     <button class="btn my-2 my-sm-0" id="logoutbtn">Log Out</button>
   </li>
 </ul>
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+<div class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchparam">
+  <button class="btn btn-outline-success my-2 my-sm-0" id="searchbtn">Search</button>
+</div>
 
 <script>
-    function handleMsg(msg) {
-        window.location.replace("index.html");
-    }
+
     $('#logoutbtn').click(function() {
         result = $.ajax({
             async: true,
@@ -28,9 +26,18 @@
             url: "php/header.php",
             timeout: 5000,
             data: {but_logout: true}
-        });
+        }).always(function(msg) {
+                window.location.replace("index.html");
 
-        result.always(handleMsg);
+        });
+    });
+
+    $('#searchbtn').click(function() {
+        let params = $('#searchparam')  .val();
+        params = encodeURIComponent(params);
+
+        window.location.replace("SearchResults.html?q=" + params);
+
     });
 
 </script>
