@@ -3,6 +3,7 @@
 include "config.php";
 include "checkToken.php";
 
+
 if (isset($_POST['productID'])) {
 
   $productID = $_POST['productID'];
@@ -24,7 +25,7 @@ if (isset($_POST['productID'])) {
     echo "<h2>";
     echo $row['productName'];
     echo "</h2>";
-    echo "<h2 class=\"text-white-50\">";
+    echo "<h2 class=\"text-white-50\" id='price'>";
     echo "$".$row['price'];
     echo "</h2>";
     echo "<h6>";
@@ -32,6 +33,7 @@ if (isset($_POST['productID'])) {
     echo "</h6>";
     echo "<p>Left in stock: {$row['stock']}</p>";
     echo "<p>{$row['description']}</p>";
+    echo "<input type='button' class='btn btn-success' value='Buy Now' id='purchase'>";
     echo "</div>";
     echo "</div>";
     echo "<br>";

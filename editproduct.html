@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Product Page</title>
+  <title>Your Listings</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,15 +41,13 @@
       <script src="js/loadHeader.js"></script>
     </div>
     <br>
-    <h3 class="text-white">Product Page</h3>
 
-    <!-- Search result -->
-    <div id="mainproduct"></div>
+    <div class="container col col-sm-8 container-fluid text-center text-white" id="maincontainer">
 
-    <div id="addressinfo" class="text-white"></div>
+
+    </div>
 
     <script>
-
         let param = location.search.substring(4);
 
         param = decodeURIComponent(param);
@@ -57,22 +55,53 @@
         $.ajax({
             async: true,
             type: "POST",
-            url: "php/product.php",
+            url: "php/getproductinfo.php",
             data: {
                 productID: param
             }
         }).always(function (msg) {
-            document.getElementById("mainproduct").innerHTML=msg;
+            if (msg.charAt(0) == 'h')
+                document.location.replace(msg);
+            else {
+                document.getElementById("maincontainer").innerHTML = msg;
+                $('#EditListingButton').click(function() {
+                    $.ajax({
+                        async: true,
+                        type: "POST",
+                        url: "php/editlisting.php",
+                        timeout:5000,
+                        data: {
+                            productName: $('#pname').val(),
+                            manufacturer: $('#manu').val(),
+                            price: $('#price').val(),
+                            stock: $('#stock').val(),
+                            imageLink: $('#image').val(),
+                            description: $('#desc').val()
+                        }
+                    }).always(function (msg) {
+                        switch (msg.charAt(0)) {
+                            case '1':
+                                alert("success");
+                                window.location.replace("yourlistings.html");
+                                break;
+                            case '2':
+                                alert(msg.substr(4));
+                                break;
+                            case '3':
+                                alert("error");
+                                break;
+                        }
+                    });
+                });
 
-            $('#purchase').click(function() {
+            }
 
-                $('#addressinfo').load('addressinfo.html');
-            });
         });
-
-
-
     </script>
+
+
+
+    <br>
 
     <!-- Page Footer -->
     <div class="row bg-secondary container-fluid text-center" id="footer">
@@ -84,18 +113,6 @@
   </div>
 </div>
 
-<script src="js/vendor/modernizr-3.7.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.4.1.min.js"><\/script>')</script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
-
-<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-<script>
-    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
-    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
-</script>
-<script src="https://www.google-analytics.com/analytics.js" async></script>
 </body>
 
 </html>

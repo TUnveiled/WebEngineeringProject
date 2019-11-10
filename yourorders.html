@@ -42,19 +42,17 @@
     </div>
     <br>
 
-    <a href="newlisting.html"><button class="btn" id="newListingBtn">Create New Listing</button></a>
-
     <br><br>
 
-    <div class="row" id="listingdiv"></div>
+    <div class="row" id="orderdiv"></div>
 
     <script>
         $.ajax({
             async: true,
             type: "GET",
-            url: "php/getlistings.php",
+            url: "php/getorders.php",
         }).always(function (msg) {
-            document.getElementById("listingdiv").innerHTML=msg;
+            document.getElementById("orderdiv").innerHTML=msg;
         });
     </script>
 
@@ -73,3 +71,4 @@
 </body>
 
 </html>
+

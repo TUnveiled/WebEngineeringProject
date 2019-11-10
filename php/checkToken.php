@@ -1,5 +1,6 @@
 <?php
 
+
 if (isset($_SESSION['email'])) {
   $result = mysqli_query($con, "SELECT token FROM usertoken where emailAddress='".$_SESSION['email']."'");
 

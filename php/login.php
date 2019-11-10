@@ -8,17 +8,20 @@ if(isset($_POST['email'])){
 
   if ($email != "" && $password != ""){
 
-    $sql_query = "select count(*) as cntUser from user where emailAddress='".$email."' and passwordHash='".$password."'";
+    $sql_query = "select administrator from user where emailAddress='".$email."' and passwordHash='".$password."'";
     $result = mysqli_query($con,$sql_query);
-    $row = mysqli_fetch_array($result);
 
-    $count = $row['cntUser'];
-
-    if($count > 0){
+    if($result){
+      $row = mysqli_fetch_array($result);
+      $admin = $row['administrator'];
       echo "Login successful!";
       $token = getToken(10);
       $_SESSION['email'] = $email;
       $_SESSION['token'] = $token;
+
+      if ($admin) {
+        $_SESSION['admin'] = true;
+      }
 
       // Update user token
       $result_token = mysqli_query($con, "select count(*) as allcount from usertoken");

@@ -1,0 +1,57 @@
+<h1> Please enter your shipping information</h1>
+
+<div class="form-group text-left">
+  <label>Address:</label>
+  <input class="form-control" type="text" id="address">
+</div>
+
+<div class="form-group text-left">
+  <label>City:</label>
+  <input class="form-control" type="text" id="city"><br>
+</div>
+
+<div class="form-group text-left">
+  <label>State/Province:</label>
+  <input class="form-control" type="text" id="state"><br>
+</div>
+
+<div class="form-group text-left">
+  <label>Postal Code:</label>
+  <input class="form-control" type="text" id="pcode"><br>
+</div>
+
+<div class="form-group text-left">
+  <label>Country:</label>
+  <input class="form-control" type="text" id="country"><br>
+</div>
+
+<button class="btn" id="neworderbtn">Submit</button> <br>
+
+<script>
+    $('#neworderbtn').click(function() {
+
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: "php/neworder.php",
+            data: {
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                pcode: document.getElementById('pcode').value,
+                country: document.getElementById('country').value,
+                pid: window.location.search.substr(window.location.search.indexOf("?id=")+4)
+            }
+        }).always(function (msg) {
+            if (msg.length > 0) {
+                alert(msg);
+                if (msg.charAt(0) == 'y') {
+                    window.location.replace("login.html");
+                }
+            } else {
+                window.location.replace("yourorders.html");
+            }
+        });
+
+    });
+</script>
