@@ -1,0 +1,110 @@
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>New Administrator</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+
+  <meta name="theme-color" content="#fafafa">
+
+
+
+</head>
+<body>
+<!-- Main container -->
+<div class="container container-fluid bg-dark text-white">
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
+
+  <!-- content window -->
+  <div class="col-sm-auto bg-dark">
+
+    <!-- Page Header -->
+    <div id="header">
+      <script src="js/loadHeader.js"></script>
+    </div>
+    <br>
+
+    <!-- login page -->
+    <div class="container container-fluid text-center">
+      <br><br>
+      <h1>Please Enter the Administrator Information:</h1>
+      <br><br><br>
+      <form method="post" id="AdminForm">
+        <label>Email:  <input class="form-control" type="text" name="AdminEmailAddress" id="AdminEmail" autocomplete="none"></label><br>
+
+        <label>Password:  <input class="form-control" type="password" name="AdminPasswordHash" id="AdminPassword" autocomplete="new-password" ></label><br>
+
+        <label>Confirm Password:  <input class="form-control" type="password" name="AdminPasswordHashCheck" id="confirmpassword" autocomplete="false"></label><br>
+
+      </form>
+      <button class="btn" id="NewAdminBtn">Add new Administrator</button>
+      <br><br><br>
+      <script>
+          function handleMsg(msg) {
+              alert(msg);
+
+              // redirect to login if register succeeded
+              if (msg.charAt(0) === "A") {
+                  window.location.replace("Login.html");
+              }
+              else if (msg.charAt(0==="T"))// if the email is already in use
+              {
+                  location.reload();
+              }
+
+          }
+          //create account
+          $('#NewAdminBtn').click(function() {
+              let result = $.ajax({
+                  async: true,
+                  type: "POST",
+                  url: "php/NewAdmin.php",
+                  timeout:5000,
+                  data: {
+                      AdminEmailAddress: $('#AdminEmail').val(),
+                      AdminPasswordHash: $('#AdminPassword').val(),
+                      AdminPasswordHashCheck: $('#confirmpassword').val()
+                  }
+              });
+
+              result.always(handleMsg);
+          });
+      </script>
+      <br><br><br>
+    </div>
+
+    <!-- Page Footer -->
+    <div class="row bg-secondary container-fluid text-center" id="footer">
+      <script src="js/loadFooter.js"></script>
+    </div>
+  </div>
+
+
+
+  <div class="col-sm-2">
+    <h1> </h1>
+  </div>
+
+</div>
+</body>

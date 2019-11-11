@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Search Results</title>
+  <title>Account Information</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,30 +41,51 @@
       <script src="js/loadHeader.js"></script>
     </div>
     <br>
-    <h3 class="text-white">Search For a User</h3>
-    <form method="post" id="userform">
-      <label class="text-white">Username: <input class="form-control" type="text" name="username" id="user"></label><br>
-    </form>
-    <button class="btn" id="searchbtn">Search</button>
+    <h3 class="text-white">Change Password:</h3>
+
     <!-- Search result -->
-    <div id="results"></div>
+    <div id="UserInfo"></div>
+    <form method="post" id="ModifyForm" >
+
+      <label>Password:  <input class="form-control" type="password" name="passwordHash" id="password"></label><br>
+
+      <label>Confirm Password:  <input class="form-control" type="password" name="passwordHashCheck" id="confirmpassword"></label><br>
+
+    </form>
+    <button class="btn" id="ModifyButton">Change Password</button>
+
 
     <script>
+        let param=location.search.substring(5);
+        param=decodeURIComponent(param);
 
-       $('#searchbtn').click(function(){
-           $.ajax({
-               async: true,
-               type: "POST",
-               url: "php/SearchUser.php",
-               data:{
-                   UserName: $('#user').val()
-               }
-           }).always(function(msg) {
-           document.getElementById("results").innerHTML=msg;
-           });
-       });
+        function handleMsg(msg) {
+            alert(msg);
 
+            // redirect to login if register succeeded
+            if (msg.charAt(0) === "P"&& param==""){
+                window.location.replace("AccountInfo.html");
+            }else
+            {
+                window.location.replace("browseusers.html");
+            }
+        }
+        //create account
+        $('#ModifyButton').click(function() {
+            let result = $.ajax({
+                async: true,
+                type: "POST",
+                url: "php/Modify.php",
+                timeout:5000,
+                data: {
+                    user: param,
+                    passwordHash: $('#password').val(),
+                    passwordHashCheck: $('#confirmpassword').val()
+                }
+            });
 
+            result.always(handleMsg);
+        });
     </script>
 
     <!-- Page Footer -->

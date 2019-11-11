@@ -1,3 +1,4 @@
+
 create table User(
     emailAddress varchar(255),
     passwordHash varchar(255),
