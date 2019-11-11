@@ -11,14 +11,14 @@ create table userToken(
     token varchar(80),
     timemodified timestamp,
     primary key (emailAddress),
-    foreign key (emailAddress) references User (emailAddress)
+    foreign key (emailAddress) references User (emailAddress) on delete cascade
 );
 
 create table Seller(
     userEmail varchar(255),
     sellerName varchar(255),
     primary key (sellerName),
-    foreign key (userEmail) references User (emailAddress)
+    foreign key (userEmail) references User (emailAddress) on delete cascade
 );
 
 create table Product(
@@ -36,8 +36,8 @@ create table Listing(
     sellerName varchar(255),
     productID integer,
     primary key (sellerName, productID),
-    foreign key (sellerName) references Seller (sellerName),
-    foreign key (productID) references Product (productID)
+    foreign key (sellerName) references Seller (sellerName) on delete cascade,
+    foreign key (productID) references Product (productID) on delete cascade
 );
 
 create table customerOrder(
@@ -49,6 +49,6 @@ create table customerOrder(
     sourceAddress varchar(255),
     custAddress varchar(255),
     primary key (orderID),
-    foreign key (buyerEmail) references User (emailAddress),
-    foreign key (sellerName, productID) references Listing (sellerName, productID)
+    foreign key (buyerEmail) references User (emailAddress) on delete cascade,
+    foreign key (sellerName, productID) references Listing (sellerName, productID) on delete cascade
 );
