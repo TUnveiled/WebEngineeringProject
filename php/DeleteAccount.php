@@ -2,13 +2,11 @@
 include "config.php";
 include "checkToken.php";
 
-if (($_POST['deleteName'])!=""){
+if (($_POST['deleteName'])!="" && isset($_POST['admin'])){
   $email=$_POST['deleteName'];
-}else{
+}else {
   $email=$_SESSION["email"];
 }
-
-
 
   // Check connection
   if ($con->connect_error) {
@@ -46,9 +44,6 @@ if (($_POST['deleteName'])!=""){
 
         }
       }
-
-
-
 
       mysqli_close($con);
     }

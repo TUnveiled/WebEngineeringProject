@@ -3,7 +3,7 @@
 include "config.php";
 include "checkToken.php";
 
-if (isset($_POST['UserName'])) {
+if (isset($_POST['UserName']) && isset($_SESSION['admin'])) {
 
   $UserName = $_POST['UserName'];
   // temp search algorithm for increment 2

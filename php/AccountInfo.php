@@ -3,7 +3,7 @@
 include "config.php";
 include "checkToken.php";
 
-if (($_POST['searchName']!="")){
+if (($_POST['searchName']!="") && isset($_SESSION['admin'])){
   $email=$_POST['searchName'];
 }else{
   $email=$_SESSION["email"];
@@ -19,13 +19,13 @@ $result=mysqli_query($con,$sql);
 
 if($row=mysqli_fetch_array($result)){
   echo "<div class=\"row text-white\">";
-  echo "<div class=\"col-sm-3 text-center\">";
+  echo "<div class=\"col-sm-12 text-center\">";
 
   echo "<br><p>Email Address: ";
   echo $row['emailAddress'];
   echo "</p><br>";
   echo "<p>Password: ";
-  echo $row['passwordHash'];
+  echo "[hidden]";
   echo "</p><br>";
   if($row['administrator']==0)
   {
@@ -38,6 +38,7 @@ if($row=mysqli_fetch_array($result)){
   echo "<input type='button' class='btn btn-success' value='Change Password' id='modify'>";
   echo "<br> <br>";
   echo "<input type='button' class='btn btn-success' value='Delete Account' id='Delete'>";
+  echo "<br> <br>";
 
   echo "</div>";
   echo "</div>";

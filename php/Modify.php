@@ -6,7 +6,7 @@ $passwordHash = $_POST['passwordHash'];
 $passwordHashCheck = $_POST['passwordHashCheck'];
 $msg = "Passwords don't match!";
 
-if (($_POST['user'])!=""){
+if (($_POST['user'])!="" && $_SESSION['admin']){
   $email=$_POST['user'];
 }else{
   $email=$_SESSION["email"];
