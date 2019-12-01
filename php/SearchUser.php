@@ -10,7 +10,7 @@ if (isset($_POST['UserName']) && isset($_SESSION['admin'])) {
 
   $sql = "select emailAddress, passwordHash, administrator
           from user u where
-          u.emailAddress like '%{$UserName}%'";
+          u.emailAddress like '%{$UserName}%' and u.emailAddress!='{$_SESSION['email']}' ";
 
 
   $result = mysqli_query($con, $sql);

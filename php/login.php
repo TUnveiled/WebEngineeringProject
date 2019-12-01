@@ -17,7 +17,7 @@ if(isset($_POST['email'])){
       $row = mysqli_fetch_array($result);
 
       $token = getToken(10);
-      echo "login successful";
+      //echo "login successful";
       $_SESSION['email'] = $email;
       $_SESSION['token'] = $token;
 
@@ -28,6 +28,10 @@ if(isset($_POST['email'])){
 
       if ($admin) {
         $_SESSION['admin'] = true;
+        echo "Admin Login Successful";
+      }
+      else{
+        echo "User Login Successful";
       }
 
       // Update user token

@@ -65,8 +65,10 @@
 
               // redirect to login if register succeeded
               if (msg.charAt(0) === "I"){
-              } else {
-                  window.location.replace("home.html");
+              } else if(msg.charAt(0)==="U") {
+                  window.location.replace("AdminHome.html");
+              }else if (msg.charAt(0)==="A"){
+                  window.location.replace("AdminHome.html");
               }
           }
           //create account
