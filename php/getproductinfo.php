@@ -11,7 +11,7 @@ if (isset($_POST['productID'])) {
   $_SESSION['productID'] = $productID;
   // temp search algorithm for increment 2
 
-  $sql = "select productName, p.productID, price, stock, description, manufacturer, imageLink, l.sellerName, s.userEmail
+  $sql = "select productName, p.productID, price, stock, description, manufacturer, imageLink, l.sellerName, s.userEmail as userEmail
           from listing l 
           join product p on l.productID = p.productID 
           join seller s on l.sellerName = s.sellerName 
@@ -54,7 +54,8 @@ if (isset($_POST['productID'])) {
 
       echo "<button class=\"btn\" id=\"EditListingButton\">Submit</button>";
     } else {
-      echo "home.html";
+      echo $_SESSION['email']."\n";
+      echo $row['userEmail'];
     }
   }
 

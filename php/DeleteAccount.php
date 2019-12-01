@@ -2,7 +2,7 @@
 include "config.php";
 include "checkToken.php";
 
-if (($_POST['deleteName'])!="" && isset($_POST['admin'])){
+if (($_POST['deleteName'])!=null ){
   $email=$_POST['deleteName'];
 }else {
   $email=$_SESSION["email"];

@@ -15,8 +15,9 @@ if(isset($_POST['email'])){
 
     if($count > 0){
       $row = mysqli_fetch_array($result);
-      echo "Login successful!";
+
       $token = getToken(10);
+      echo "login successful";
       $_SESSION['email'] = $email;
       $_SESSION['token'] = $token;
 
@@ -30,7 +31,7 @@ if(isset($_POST['email'])){
       }
 
       // Update user token
-      $result_token = mysqli_query($con, "select count(*) as allcount from usertoken");
+      $result_token = mysqli_query($con, "select count(*) as allcount from usertoken WHERE emailAddress='{$email}'");
       $row_token = mysqli_fetch_assoc($result_token);
       if($row_token['allcount'] > 0){
         mysqli_query($con,"update usertoken set token='".$token."' where emailAddress='".$email."'");

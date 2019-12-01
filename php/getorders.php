@@ -10,7 +10,7 @@ if (isset($_SESSION['email'])) {
   $sql = "select productName, p.productID, price, stock, description, manufacturer, imageLink
           from customerorder o
           join product p on o.productID = p.productID 
-          where o.buyerEmail = '{$email}'";
+          where buyerEmail = '{$email}'";
 
   $result = mysqli_query($con, $sql);
 

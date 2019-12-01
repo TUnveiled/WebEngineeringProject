@@ -40,7 +40,7 @@ create table Listing(
     foreign key (productID) references Product (productID) on delete cascade
 );
 
-create table customerOrder(
+create table customerorder(
     orderID integer,
     buyerEmail varchar(255),
     sellerName varchar(255),
@@ -49,6 +49,6 @@ create table customerOrder(
     sourceAddress varchar(255),
     custAddress varchar(255),
     primary key (orderID),
-    foreign key (buyerEmail) references User (emailAddress) on delete cascade,
-    foreign key (sellerName, productID) references Listing (sellerName, productID) on delete cascade
+    foreign key (buyerEmail) references user (emailAddress) on delete cascade,
+    foreign key (sellerName, productID) references listing (sellerName, productID) on delete cascade
 );
